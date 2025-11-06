@@ -1,0 +1,13 @@
+#!/bin/bash
+echo "Start loggin temp in 5 sec..."
+sleep 5
+n=0
+
+while [ $n -le 10 ]
+do
+	currentdatetime=`date +"%Y-%m-%d %T"`
+	temp=$(( $(cat /sys/class/thermal/thermal_zone0/temp) ))
+	echo -e ${currentdatetime}";"$temp
+	echo -e ${currentdatetime}";"$temp >> temp_log
+	sleep 5
+done
