@@ -1,14 +1,24 @@
 #!/bin/bash
-echo "Press any key to start. CTRL+C to stop."
-read a
-n=0
-filename=`date +"%Y%m%d%H%M%S"`
+clear #clear screen
+echo "Temp Logger"
+echo "Press any key to start. CTRL+C to stop." #show message
+read a #press a key
 
-while [ $n -le 10 ]
+datetime=$(date +"%Y%m%d%H%M%S") #actual datatime
+logfile="temp_log_$datetime.csv" #logfile name
+
+#show the available zones on your computer with follow instruction
+#grep . /sys/class/thermal/thermal_zone*/type
+
+echo -e "Time     | Temp  | TopProcess" #print on screen
+echo -e "datetime;temp;topprocess" > $logfile #csv column names
+while true #infinite while
 do
-	currentdatetime=`date +"%Y-%m-%d %T"`
-	temp=$(( $(cat /sys/class/thermal/thermal_zone0/temp) ))
-	echo -e ${currentdatetime}";"$temp
-	echo -e ${currentdatetime}";"$temp >> temp_log"_"$filename
+	currentdatetime_savecsv=$(date +"%Y-%m-%d %T") #datatime for csv
+	currentdatetime_showscreen=$(date +"%T") #datatime for screen
+	topprocess=$(ps -eo comm,%cpu --sort=-%cpu | sed -n '2p') #get top process
+	temp=$(( $(cat /sys/class/thermal/thermal_zone0/temp) )) #change number of thermal zone if you want
+	echo -e ${currentdatetime_showscreen}" | "$temp" | "$topprocess #print on screen
+	echo -e ${currentdatetime_savecsv}";"$temp";"$topprocess >> $logfile #print on CSV file
 	sleep 5
 done
