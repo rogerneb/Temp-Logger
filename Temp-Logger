@@ -1,0 +1,28 @@
+#!/bin/bash
+zone=1 #zone selected
+#show the available zones on your computer with follow instruction
+#grep . /sys/class/thermal/thermal_zone*/type
+
+datetime=$(date +"%Y%m%d%H%M%S") #actual datatime
+logfile="templog_$datetime.csv" #logfile name
+
+echo -e "datetime;temp;topprocess" > templog.csv #create Temp-Logger file
+
+clear #clear screen
+echo "Temp-Logger" #welcome
+echo "Press any key to start. CTRL+C to stop."
+read a #wait
+
+echo -e "Time     | Temp  | TopProcess" #print on screen
+trap "cp templog.csv $logfile; echo -e '\nTemp-Logger stoped. Log saved at $logfile'; exit" INT #when CTRL+C is pressed
+
+while true #infinite while
+do
+	currentdatetime_savecsv=$(date +"%Y-%m-%d %T") #datatime for csv
+	currentdatetime_showscreen=$(date +"%T") #datatime for screen
+	topprocess=$(ps -eo comm,%cpu --sort=-%cpu | sed -n '2p') #get top process
+	temp=$(( $(cat /sys/class/thermal/thermal_zone$zone/temp) )) #get temp
+	echo -e ${currentdatetime_showscreen}" | "$temp" | "$topprocess #print on screen
+	echo -e ${currentdatetime_savecsv}";"$temp";"$topprocess >> templog.csv #print on CSV file
+	sleep 5
+done
