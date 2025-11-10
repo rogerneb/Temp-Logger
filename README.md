@@ -7,8 +7,10 @@ First yo must detect and select your CPU zone to monitorate. In a terminal just 
 
 You will see something like this:
 >/sys/class/thermal/thermal_zone0/type:acpitz
-/sys/class/thermal/thermal_zone1/type:x86_pkg_temp
-/sys/class/thermal/thermal_zone2/type:iwlwifi_1
+>
+>/sys/class/thermal/thermal_zone1/type:x86_pkg_temp
+>
+>/sys/class/thermal/thermal_zone2/type:iwlwifi_1
 
 In this example CPU it''s the zone1.
 Edit line 2 of Temp-Logger file with your selected zone.
