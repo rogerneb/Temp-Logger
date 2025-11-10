@@ -20,8 +20,8 @@ Just run in a terminal
 
 And you will see something like this:
 > Time     | Temp  | TopProcess
-20:45:07 | 30000 | firefox-bin 8.0
-20:45:12 | 29000 | firefox-bin 8.0
+> 20:45:07 | 30000 | firefox-bin 8.0
+> 20:45:12 | 29000 | firefox-bin 8.0
 
 When you press CTRL+C the log was saved in a new CSV file
 
