@@ -12,7 +12,7 @@ You will see something like this:
 >
 >/sys/class/thermal/thermal_zone2/type:iwlwifi_1
 
-In this example CPU it''s the zone1.
+In this example CPU it's the zone1.
 Edit line 2 of Temp-Logger file with your selected zone.
 >zone=1 #zone selected
 
