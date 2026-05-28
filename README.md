@@ -33,7 +33,7 @@ When you press CTRL+C the log was saved in a new CSV file
 If you want a real time plot you must install GNUplot. In Debian Based distros just type this in a terminal:
 > apt install gnuplot
 
-And then, when Temp-Logger was running, just type in other terminal
+And then, when Temp-Logger is running, just type in other terminal
 > gnuplot -p plot
 
 ![Temp-Logger with GNUplot. ](https://raw.githubusercontent.com/rogerneb/Temp-Logger/refs/heads/main/screenshot/example2.png)
